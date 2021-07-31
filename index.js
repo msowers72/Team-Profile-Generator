@@ -1,7 +1,41 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { number } = require('yargs');
+const util = require('util');
 
+const writeFileAsync = util.promisify(fs.writeFile);
+
+
+const promptUser = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?',
+        },
+        {
+            type: 'input',
+            name: 'role',
+            message: 'What is your role?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email?',
+        },
+        {
+            type: 'input',
+            name: 'officeid',
+            message: 'What is your office Id?',
+        },
+        {
+            type: 'input',
+            name: 'employeeid',
+            message: 'What is your employee ID?',
+        },
+
+    ]);
+
+};
 const generateHTML = (answers) =>
     `<!DOCTYPE html>
 <html lang="en">
@@ -32,11 +66,11 @@ const generateHTML = (answers) =>
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item">email:${answers.email}</li>
-                    <li class="list-group-item">Office ID:${answers.officeid}</li>
-                    <li class="list-group-item">Employee ID:${answers.employeeid}</li>
+                    <li class="list-group-item">email: ${answers.email}</li>
+                    <li class="list-group-item">Office ID: ${answers.officeid}</li>
+                    <li class="list-group-item">Employee ID: ${answers.employeeid}</li>
                 </ul>
-            </div>
+            </div>            
         </div>
             </div>
         </div>
@@ -44,39 +78,11 @@ const generateHTML = (answers) =>
 </body>
 </html>`;
 
-inquirer
-    .prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is your name?',
-        },
-        {
-            type: 'input',
-            name: 'role',
-            message: 'What is your role?',
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is your email?',
-        },
-        {
-            type: 'input',
-            name: 'officeid',
-            message: 'What is your office Id?',
-        },
-        {
-            type: 'input',
-            name: 'employeeid',
-            message: 'What is your employee ID?',
-        },
+const init = () => {
+    promptUser()
+        .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
+        .then(() => console.log('Successfully wrote to index.html'))
+        .catch((err) => console.error(err));
+};
 
-    ])
-    .then((answers) => {
-        const htmlPageContent = generateHTML(answers);
-
-        fs.writeFile('index.html', htmlPageContent, (err) =>
-            err ? console.log(err) : console.log('Successfully created index.html!')
-        );
-    });
+init();
