@@ -59,26 +59,99 @@ const generateHTML = (answers) =>
     <div class="container">
         <div class="row">
             <div class="team-area col-12 d-flex justify-content-center">
-            <div class="card employee-card">
-            <div class="card-header">
-                <h2 class="card-title">${answers.name}</h2>
-                <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${answers.role}</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">email: ${answers.email}</li>
-                    <li class="list-group-item">Office ID: ${answers.officeid}</li>
-                    <li class="list-group-item">Employee ID: ${answers.employeeid}</li>
-                </ul>
-            </div>            
-        </div>
+                <div class="card employee-card">
+                    <div class="card-header">
+                        <h2 class="card-title">${answers.name}</h2>
+                        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${answers.role}</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">email: ${answers.email}</li>
+                            <li class="list-group-item">Office ID: ${answers.officeid}</li>
+                            <li class="list-group-item">Employee ID: ${answers.employeeid}</li>
+                        </ul>
+                    </div>            
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>`;
 
+/*
+- collect manager info
+- prompt for more users
+  - engineer
+  - intern
+
+all done?
+  - write file to html
+  writeFileAsync(manager, engineers, interns) {
+      const managerHTML = (manager) => {
+         return `
+                <div class="card employee-card">
+                    <div class="card-header">
+                        <h2 class="card-title">${manager.name}</h2>
+                        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.role}</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">email: ${manager.email}</li>
+                            <li class="list-group-item">Office ID: ${manager.officeid}</li>
+                            <li class="list-group-item">Employee ID: ${manager.employeeid}</li>
+                        </ul>
+                    </div>            
+                </div>
+      `
+      };
+
+      const engineersHTML = (engineers) => {
+          let returnString = "";
+
+          if (engineers && engineers.length > 0) {
+              engineers.forEach(engineer => {
+                  returnString += `
+                <div class="card employee-card">
+                    <div class="card-header">
+                        <h2 class="card-title">${engineer.name}</h2>
+                        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${engineer.role}</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">email: ${engineer.email}</li>
+                            <li class="list-group-item">Office ID: ${engineer.officeid}</li>
+                            <li class="list-group-item">Employee ID: ${engineer.employeeid}</li>
+                        </ul>
+                    </div>            
+                </div>
+                  `
+              })
+          }
+
+          return returnString;
+      }
+
+      const finalOut = `
+      <html>
+        <body>
+            <div class="cards">
+            ${managerHTML(manager)}
+            ${engineersHTML(engineers)}
+            ${interns}
+            </div>
+        </body>
+      </html>
+      `
+  }
+
+*/
+
 const init = () => {
+    // get manager details
+    // prompt for new user
+      // - engineer - getEngineerInfo()
+      // - intern  - getInternInfo()
+      // -all done - writeFile(manager, engineers, interns)
     promptUser()
         .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
         .then(() => console.log('Successfully wrote to index.html'))
