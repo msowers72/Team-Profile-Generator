@@ -33,6 +33,6 @@ The application will be used to generate a webpage that diplays a mangers team
 <!-- ![Tux, the Linux mascot](https://img.shields.io/badge/License-MIT-green) -->
 
 ## Video
-<iframe src="chrome-extension://mmeijimgabbpbgpdklnllpncmdofkcpn/app.html#/files/c07d463b-2836-4048-y248-6d980e50b29e" width="640" height="480"></iframe>
+<iframe src="https://edit.screencastify.com/edit" width="640" height="480"></iframe>
   
  ![images](https://user-images.githubusercontent.com/80433477/127933093-2a157d3c-c082-485c-a9dc-e0ba7c9926b8.png)
