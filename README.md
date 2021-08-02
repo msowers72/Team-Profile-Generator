@@ -1,10 +1,5 @@
 # Team-Profile-Generator
 
-
-
-# Professional README
-
-
 # Table of Contents
 - [username](#username)
 - [description](#description)
