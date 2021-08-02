@@ -10,11 +10,11 @@ const Employee = require("./lib/employee")
 
 
 const writeFileAsync = util.promisify(fs.writeFile);
-let teamArray =[]
-let managerArray =[]
-let engineerArray =[]
+let teamArray = []
+let managerArray = []
+let engineerArray = []
 let internArray = []
-let employeeArray = [] 
+let employeeArray = []
 
 const createManager = () => {
     return inquirer.prompt([
@@ -22,12 +22,12 @@ const createManager = () => {
             type: 'input',
             name: 'name',
             message: 'What is your name?',
-        },     
+        },
         {
             type: 'input',
             name: 'employeeid',
             message: 'What is your employee ID?',
-        },   
+        },
         {
             type: 'input',
             name: 'email',
@@ -38,21 +38,21 @@ const createManager = () => {
             name: 'number',
             message: 'What is your office number?',
         },
-        
+
 
     ]);
 
 };
 
-const addTeamMembers = function() {
+const addTeamMembers = function () {
     inquirer
-    .prompt([
-    {
-        type: "list",
-        name: "choice",
-        message: "What type of employee would you like to create?",
-        choices: ["Manager", "Engineer", "Intern"]
-    }])
+        .prompt([
+            {
+                type: "list",
+                name: "choice",
+                message: "What type of employee would you like to create?",
+                choices: ["Manager", "Engineer", "Intern"]
+            }])
 }
 
 const createEngineer = () => {
@@ -61,12 +61,12 @@ const createEngineer = () => {
             type: 'input',
             name: 'name',
             message: 'What is your name?',
-        },     
+        },
         {
             type: 'input',
             name: 'employeeid',
             message: 'What is your employee ID?',
-        },   
+        },
         {
             type: 'input',
             name: 'email',
@@ -77,7 +77,7 @@ const createEngineer = () => {
             name: 'number',
             message: 'What is your office number?',
         },
-        
+
 
     ]);
 
@@ -89,12 +89,12 @@ const createIntern = () => {
             type: 'input',
             name: 'name',
             message: 'What is your name?',
-        },     
+        },
         {
             type: 'input',
             name: 'employeeid',
             message: 'What is your employee ID?',
-        },   
+        },
         {
             type: 'input',
             name: 'email',
@@ -105,7 +105,7 @@ const createIntern = () => {
             name: 'number',
             message: 'What is your office number?',
         },
-        
+
 
     ]);
 
@@ -224,9 +224,9 @@ all done?
 const init = () => {
     // get manager details
     // prompt for new user
-      // - engineer - getEngineerInfo()
-      // - intern  - getInternInfo()
-      // -all done - writeFile(manager, engineers, interns)
+    // - engineer - getEngineerInfo()
+    // - intern  - getInternInfo()
+    // -all done - writeFile(manager, engineers, interns)
     createManager()
         .then((answers) => {
             console.log(answers)
@@ -240,12 +240,12 @@ const init = () => {
             teamArray.push(engineer)
             console.log(teamArray)
             addTeamMembers();
-            
 
-          // writeFileAsync('index.html', generateHTML(answers))
+
+         writeFileAsync('index.html', generateHTML(answers))
         })
-         //.then(() => console.log('Successfully wrote to index.html'))
-         //.catch((err) => console.error(err));
+    //.then(() => console.log('Successfully wrote to index.html'))
+    //.catch((err) => console.error(err));
 };
 
 init();
@@ -274,7 +274,7 @@ all done?
                             <li class="list-group-item">Office ID: ${manager.officeid}</li>
                             <li class="list-group-item">Employee ID: ${manager.employeeid}</li>
                         </ul>
-                    </div>            
+                    </div>
                 </div>
       `
       };
@@ -296,7 +296,7 @@ all done?
                             <li class="list-group-item">Office ID: ${engineer.officeid}</li>
                             <li class="list-group-item">Employee ID: ${engineer.employeeid}</li>
                         </ul>
-                    </div>            
+                    </div>
                 </div>
                   `
               })
